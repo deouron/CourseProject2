@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawCurve : MonoBehaviour
+public class DrawDownCurve : MonoBehaviour
 {
     private LineRenderer lineRenderer;
-    public Transform p0;
-    public Transform p1;
-    public Transform p2;
+
+    public static Vector3 p0 = new Vector3(-10f, -2f, 0f);
+    private static Vector3 p1 = new Vector3(0f, 2f, 0f);
+    private static Vector3 p2 = new Vector3(10f, -2f, 0f);
+
+    public static Vector3 shift;
 
     void Start()
     {
@@ -15,17 +18,21 @@ public class DrawCurve : MonoBehaviour
         lineRenderer.material.color = Color.red;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
+        shift = new Vector3(0f, 0f, 0f);
     }
 
     void Update()
     {
-        DrawQuadraticBezierCurve(p0.position, p1.position, p2.position);
+        DrawQuadraticBezierCurve(p0, p1, p2);
     }
 
     void DrawQuadraticBezierCurve(Vector3 point0, Vector3 point1, Vector3 point2)
     {
         lineRenderer.positionCount = 200;
         float t = 0f;
+        point0 += shift;
+        point1 += shift;
+        point2 += shift;
         Vector3 B = new Vector3(0, 0, 0);
         for (int i = 0; i < lineRenderer.positionCount; i++)
         {
