@@ -5,42 +5,37 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
     public static float FindDistanceToEllipse(Vector2 point) {
+        int steps = 3;
+
         double ellipse_a = 10, ellipse_b = 3;  // 11.3, 2
         double SQRT_TWO = 0.70710678118;
         // Ellipse: (x/a)^2 + (y/b)^2 = 1
 
-        double px = System.Math.Abs(point.x);
-        double py = System.Math.Abs(point.y);      
+        double px = System.Math.Abs(point.x), py = System.Math.Abs(point.y);  
+        double tx = SQRT_TWO, ty = SQRT_TWO, a = ellipse_a, b = ellipse_b;
+        double x, y, delta_x, delta_y, rx, ry, qx, qy, r, q, t = 0;
 
-        double tx = SQRT_TWO;
-        double ty = SQRT_TWO;
-
-        double a = ellipse_a;
-        double b = ellipse_b;
-
-        double x, y, ex, ey, rx, ry, qx, qy, r, q, t = 0;
-
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < steps; ++i)
         {
             x = a * SQRT_TWO;
             y = b * SQRT_TWO;
 
-            ex = (a * a - b * b) * Mathf.Pow((float)tx, 3) / a;
-            ey = (b * b - a * a) * Mathf.Pow((float)ty, 3) / b;
+            delta_x = (Mathf.Pow((float)a, 2) - Mathf.Pow((float)b, 2)) * Mathf.Pow((float)tx, 3) / a;
+            delta_y = (Mathf.Pow((float)b, 2) - Mathf.Pow((float)a, 2)) * Mathf.Pow((float)ty, 3) / b;
 
-            rx = x - ex;
-            ry = y - ey;
+            rx = x - delta_x;
+            ry = y - delta_y;
 
-            qx = px - ex;
-            qy = py - ey;
+            qx = px - delta_x;
+            qy = py - delta_y;
 
-            r = System.Math.Sqrt(rx * rx + ry * ry);
-            q = System.Math.Sqrt(qy * qy + qx * qx);
+            r = System.Math.Sqrt(Mathf.Pow((float)rx, 2) + Mathf.Pow((float)ry, 2));
+            q = System.Math.Sqrt(Mathf.Pow((float)qx, 2) + Mathf.Pow((float)qy, 2));
 
-            tx = System.Math.Min(1, System.Math.Max(0, (qx * r / q + ex) / a));
-            ty = System.Math.Min(1, System.Math.Max(0, (qy * r / q + ey) / b));
+            tx = System.Math.Min(1, System.Math.Max(0, (qx * r / q + delta_x) / a));
+            ty = System.Math.Min(1, System.Math.Max(0, (qy * r / q + delta_y) / b));
 
-            t = System.Math.Sqrt(tx * tx + ty * ty);
+            t = System.Math.Sqrt(Mathf.Pow((float)tx, 2) + Mathf.Pow((float)ty, 2));
 
             tx /= t;
             ty /= t;
