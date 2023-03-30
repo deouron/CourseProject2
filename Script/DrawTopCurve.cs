@@ -6,9 +6,9 @@ public class DrawTopCurve : MonoBehaviour
 {
     private LineRenderer lineRenderer;
 
-    public static Vector3 p0 = new Vector3(-10f, 4f, 0f);
-    private static Vector3 p1 = new Vector3(0f, 8f, 0f);
-    private static Vector3 p2 = new Vector3(10f, 4f, 0f);
+    public static Vector3 p0 = new Vector3(-10f, 3f, 0f);
+    private static Vector3 p1 = new Vector3(0f, 7f, 0f);
+    private static Vector3 p2 = new Vector3(10f, 3f, 0f);
 
     public static Vector3 shift;
 
@@ -18,12 +18,16 @@ public class DrawTopCurve : MonoBehaviour
         lineRenderer.material.color = Color.red;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
-        shift = new Vector3(0f, 0f, 0f);
+        shift = new Vector3(0f, (SettingsMenu.InitialDistance - 4) / 2, 0f);
     }
 
     void Update()
     {
-        DrawQuadraticBezierCurve(p0, p1, p2);
+        if (!PauseMenu.isPause) {
+            DrawQuadraticBezierCurve(p0, p1, p2);
+        } else {
+            lineRenderer.positionCount = 0;
+        }
     }
 
     void DrawQuadraticBezierCurve(Vector3 point0, Vector3 point1, Vector3 point2)

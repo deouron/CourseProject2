@@ -67,9 +67,10 @@ public class DrawLine : MonoBehaviour
     }
 
     void ShiftCurves() {
-        if (milisecDurationMistake > 30) {
+        if (milisecDurationMistake > SettingsMenu.penaltyTime) {
             Utils.OffsetCurves();
-            milisecDurationMistake -= 30;
+            milisecDurationMistake -= SettingsMenu.penaltyTime;
+            score += SettingsMenu.penaltySteppingOut;
         } else {
             Utils.SmoothCurves();
         }
@@ -124,8 +125,8 @@ public class DrawLine : MonoBehaviour
         score = 0;
         secDuration = 0;
         milisecDurationMistake = 0;
-        DrawTopCurve.shift.y = 0;
-        DrawDownCurve.shift.y = 0;
+        DrawTopCurve.shift.y = (SettingsMenu.InitialDistance - 4) / 2;
+        DrawDownCurve.shift.y = -(SettingsMenu.InitialDistance - 4) / 2;
     }
 
     void Update() {

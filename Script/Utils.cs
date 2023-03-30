@@ -61,21 +61,19 @@ public class Utils : MonoBehaviour
     }
 
     public static void SmoothCurves() {
-        if (DrawTopCurve.shift.y > -1.3f) {
-            DrawTopCurve.shift.y -= 0.05f;
+        if (4 + DrawTopCurve.shift.y - DrawDownCurve.shift.y - SettingsMenu.convergenceSpeed * 2
+            >= SettingsMenu.MinDistance) {
+            DrawTopCurve.shift.y -= SettingsMenu.convergenceSpeed;
+            DrawDownCurve.shift.y += SettingsMenu.convergenceSpeed;
         } 
-        if (DrawDownCurve.shift.y < 1.3f) {
-            DrawDownCurve.shift.y += 0.05f;
-        }
     }
 
     public static void OffsetCurves() {
-        if (DrawTopCurve.shift.y <= 0.3f) {     
-            DrawTopCurve.shift.y += 0.15f;
+        if (4 + DrawTopCurve.shift.y + DrawTopCurve.shift.y - DrawDownCurve.shift.y + SettingsMenu.recedingSpeed * 2
+            <= SettingsMenu.MaxDistance) {     
+            DrawTopCurve.shift.y += SettingsMenu.recedingSpeed;
+            DrawDownCurve.shift.y -= SettingsMenu.recedingSpeed;
         } 
-        if (DrawDownCurve.shift.y >= -0.3f) {
-            DrawDownCurve.shift.y -= 0.15f;
-        }
     }
 
     public static Vector2 GetWorldCoordinate(Vector2 mousePosition) {
