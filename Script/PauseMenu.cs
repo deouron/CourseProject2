@@ -50,19 +50,22 @@ public class PauseMenu : MonoBehaviour
     public void SaveData() {
         // from DrawLine.cs
         // List<float> logs, List<string> durations, List<string> times
-        for (int i = 0; i < DrawLine.logs.Count; ++i) {
+        for (int i = 0; i < DrawLine.logs.Count - 1; ++i) {
             PlayerPrefs.SetFloat("logs_" + i.ToString(), DrawLine.logs[i]);
         }
-        for (int i = 0; i < DrawLine.durations.Count; ++i) {
+        for (int i = 0; i < DrawLine.durations.Count - 1; ++i) {
             PlayerPrefs.SetString("durations_" + i.ToString(), DrawLine.durations[i]);
         }
-        for (int i = 0; i < DrawLine.times.Count; ++i) {
+        for (int i = 0; i < DrawLine.times.Count - 1; ++i) {
             PlayerPrefs.SetString("times_" + i.ToString(), DrawLine.times[i]);
         }
-        saveDataCnt = DrawLine.logs.Count;
+        saveDataCnt = DrawLine.logs.Count - 1;
+        WriteLog.ClearArrays();
         PlayerPrefs.SetInt("saveDataCnt", saveDataCnt);
         PlayerPrefs.Save();
         pauseMenuUI.SetActive(false);
+        isPause = false;
+        Time.timeScale = 1f;
     }
 
     public void QuitGame() {

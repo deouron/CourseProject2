@@ -44,7 +44,7 @@ public class DrawLine : MonoBehaviour
     }
 
     void Start() {
-        lineDraw.material.color = Color.black;
+        // lineDraw.material.color = Color.black;
         lineDraw.startWidth = 0.03f;
         lineDraw.endWidth = 0.03f;
         lineDraw.positionCount = 0;
@@ -53,7 +53,7 @@ public class DrawLine : MonoBehaviour
         secDuration = 0;
         timeStart = time;
 
-        timeMistake = time / 10;
+        timeMistake = time / 5;
         timeStartMistake = timeMistake;
         milisecDurationMistake = 0;
 
@@ -67,9 +67,9 @@ public class DrawLine : MonoBehaviour
     }
 
     void ShiftCurves() {
-        if (milisecDurationMistake > SettingsMenu.penaltyTime) {
+        if (milisecDurationMistake > SettingsMenu.penaltyTime / (10 / Utils.milisecForMove)) {
             Utils.OffsetCurves();
-            milisecDurationMistake -= SettingsMenu.penaltyTime;
+            milisecDurationMistake -= SettingsMenu.penaltyTime / (10 / Utils.milisecForMove);
             score += SettingsMenu.penaltySteppingOut;
         } else {
             Utils.SmoothCurves();
@@ -91,7 +91,7 @@ public class DrawLine : MonoBehaviour
         if (time <= 0) {
             time = timeStart;
             secDuration += 1;
-            if (secDuration % 10 == 0) {
+            if (secDuration % Utils.milisecForMove == 0) {
                 isNeedShift = true;
             }
         }

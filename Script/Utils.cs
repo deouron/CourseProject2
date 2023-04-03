@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
+    public static int milisecForMove = 2;
+
     public static float FindDistanceToEllipse(Vector2 point) {
         int steps = 3;
 
@@ -58,16 +60,16 @@ public class Utils : MonoBehaviour
     public static void SmoothCurves() {
         if (4 + DrawTopCurve.shift.y - DrawDownCurve.shift.y - SettingsMenu.convergenceSpeed * 2
             >= SettingsMenu.MinDistance) {
-            DrawTopCurve.shift.y -= SettingsMenu.convergenceSpeed;
-            DrawDownCurve.shift.y += SettingsMenu.convergenceSpeed;
+            DrawTopCurve.shift.y -= SettingsMenu.convergenceSpeed / (10 / milisecForMove);
+            DrawDownCurve.shift.y += SettingsMenu.convergenceSpeed / (10 / milisecForMove);
         } 
     }
 
     public static void OffsetCurves() {
         if (4 + DrawTopCurve.shift.y + DrawTopCurve.shift.y - DrawDownCurve.shift.y + SettingsMenu.recedingSpeed * 2
             <= SettingsMenu.MaxDistance) {     
-            DrawTopCurve.shift.y += SettingsMenu.recedingSpeed;
-            DrawDownCurve.shift.y -= SettingsMenu.recedingSpeed;
+            DrawTopCurve.shift.y += SettingsMenu.recedingSpeed / (10 / milisecForMove);
+            DrawDownCurve.shift.y -= SettingsMenu.recedingSpeed / (10 / milisecForMove);
         } 
     }
 
