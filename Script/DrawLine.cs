@@ -15,6 +15,9 @@ public class DrawLine : MonoBehaviour
     private Transform curveMid;
     private Transform curveFinish;
 
+    public GameObject leftPoint;
+    public GameObject rightPoint;
+
     public float time;
     public float secDuration;
     [SerializeField] TMP_Text timeText;
@@ -43,6 +46,11 @@ public class DrawLine : MonoBehaviour
         } 
     }
 
+    void resetPoints() {
+        leftPoint.transform.localScale = Utils.initialRaiusScale;
+        rightPoint.transform.localScale = Utils.initialRaiusScale;
+    }
+
     void Start() {
         // lineDraw.material.color = Color.black;
         lineDraw.startWidth = 0.03f;
@@ -64,6 +72,23 @@ public class DrawLine : MonoBehaviour
         if (logs.Count == 0) {
             LoadData();
         }
+
+        resetPoints();
+    }
+
+    void increaseRaduises() {
+        if (leftPoint.transform.localScale.x < 200) {
+            leftPoint.transform.localScale += Utils.pointsIncreaseRadiusShift;
+            rightPoint.transform.localScale += Utils.pointsIncreaseRadiusShift;
+        }
+        // Debug.Log("leftPoint: " + leftPoint.transform.localScale);
+    }
+
+    void decreaseRaduises() {
+        if (leftPoint.transform.localScale.x > 50) {
+            leftPoint.transform.localScale -= Utils.pointsDecreaseRadiusShift;
+            rightPoint.transform.localScale -= Utils.pointsDecreaseRadiusShift;
+        }
     }
 
     void ShiftCurves() {
@@ -71,8 +96,10 @@ public class DrawLine : MonoBehaviour
             Utils.OffsetCurves();
             milisecDurationMistake -= SettingsMenu.penaltyTime / (10 / Utils.milisecForMove);
             score += SettingsMenu.penaltySteppingOut;
+            increaseRaduises();
         } else {
             Utils.SmoothCurves();
+            decreaseRaduises();
         }
         
     }
@@ -127,6 +154,8 @@ public class DrawLine : MonoBehaviour
         milisecDurationMistake = 0;
         DrawTopCurve.shift.y = (SettingsMenu.InitialDistance - 4) / 2;
         DrawDownCurve.shift.y = -(SettingsMenu.InitialDistance - 4) / 2;
+
+        resetPoints();
     }
 
     void Update() {

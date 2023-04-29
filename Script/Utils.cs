@@ -6,6 +6,10 @@ public class Utils : MonoBehaviour
 {
     public static int milisecForMove = 2;
 
+    public static Vector3 pointsIncreaseRadiusShift = new Vector3(3.0f, 3.0f, 3.0f);
+    public static Vector3 pointsDecreaseRadiusShift = new Vector3(1.3f, 1.3f, 1.3f);
+    public static Vector3 initialRaiusScale = new Vector3(162.0f, 162.0f, 108.0f);
+
     public static float FindDistanceToEllipse(Vector2 point) {
         int steps = 3;
 
