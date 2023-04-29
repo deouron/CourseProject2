@@ -78,16 +78,24 @@ public class DrawLine : MonoBehaviour
 
     void increaseRaduises() {
         if (leftPoint.transform.localScale.x < 200) {
-            leftPoint.transform.localScale += Utils.pointsIncreaseRadiusShift;
-            rightPoint.transform.localScale += Utils.pointsIncreaseRadiusShift;
+            leftPoint.transform.localScale += new Vector3(SettingsMenu.radiusIncreaseSpeed, 
+                                                            SettingsMenu.radiusIncreaseSpeed,
+                                                            SettingsMenu.radiusIncreaseSpeed);
+            rightPoint.transform.localScale += new Vector3(SettingsMenu.radiusIncreaseSpeed, 
+                                                            SettingsMenu.radiusIncreaseSpeed,
+                                                            SettingsMenu.radiusIncreaseSpeed);
         }
         // Debug.Log("leftPoint: " + leftPoint.transform.localScale);
     }
 
     void decreaseRaduises() {
         if (leftPoint.transform.localScale.x > 50) {
-            leftPoint.transform.localScale -= Utils.pointsDecreaseRadiusShift;
-            rightPoint.transform.localScale -= Utils.pointsDecreaseRadiusShift;
+            leftPoint.transform.localScale -= new Vector3(SettingsMenu.radiusDecreaseSpeed, 
+                                                            SettingsMenu.radiusDecreaseSpeed,
+                                                            SettingsMenu.radiusDecreaseSpeed);
+            rightPoint.transform.localScale -= new Vector3(SettingsMenu.radiusDecreaseSpeed, 
+                                                            SettingsMenu.radiusDecreaseSpeed,
+                                                            SettingsMenu.radiusDecreaseSpeed);
         }
     }
 
@@ -161,6 +169,15 @@ public class DrawLine : MonoBehaviour
     void Update() {
         distanceBetweenCurves = (float)Vector3.Distance(DrawTopCurve.p0 + DrawTopCurve.shift,
                                                         DrawDownCurve.p0 + DrawDownCurve.shift);
+
+        if (PauseMenu.isPause) {
+            leftPoint.SetActive(false);
+            rightPoint.SetActive(false);
+        } else {
+            leftPoint.SetActive(true);
+            rightPoint.SetActive(true);
+        }
+
         if (Input.GetMouseButton(0) && !PauseMenu.isPause) {
             Vector2 currentPoint = Utils.GetWorldCoordinate(Input.mousePosition);
             if (!(currentPoint.x == 0 && currentPoint.y == 0)) {

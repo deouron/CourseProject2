@@ -37,6 +37,14 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] TMP_Text sliderPenaltySteppingOutText;
     public static int penaltySteppingOut = 10;
 
+    public Slider sliderRadiusIncreaseSpeed; 
+    [SerializeField] TMP_Text sliderRadiusIncreaseSpeedText;
+    public static float radiusIncreaseSpeed = 3.0f;
+
+    public Slider sliderRadiusDecreaseSpeed; 
+    [SerializeField] TMP_Text sliderRadiusDecreaseSpeedText;
+    public static float radiusDecreaseSpeed = 1.3f;
+
     public void Start() {
         clearMenuUI.SetActive(false);
 
@@ -47,6 +55,8 @@ public class SettingsMenu : MonoBehaviour
         sliderConvergenceSpeed.value = convergenceSpeed;
         sliderRecedingSpeed.value = recedingSpeed;
         sliderPenaltySteppingOut.value = penaltySteppingOut;
+        sliderRadiusIncreaseSpeed.value = radiusIncreaseSpeed;
+        sliderRadiusDecreaseSpeed.value = radiusDecreaseSpeed;
     }
 
     public void Update() {
@@ -70,6 +80,12 @@ public class SettingsMenu : MonoBehaviour
 
         penaltySteppingOut = (int)sliderPenaltySteppingOut.value;
         sliderPenaltySteppingOutText.text = penaltySteppingOut.ToString();
+
+        radiusIncreaseSpeed = (float)sliderRadiusIncreaseSpeed.value;
+        sliderRadiusIncreaseSpeedText.text = radiusIncreaseSpeed.ToString();
+
+        radiusDecreaseSpeed = (float)System.Math.Round(sliderRadiusDecreaseSpeed.value, 1);
+        sliderRadiusDecreaseSpeedText.text = radiusDecreaseSpeed.ToString();
     }
 
     public void OpenConfirm() {
