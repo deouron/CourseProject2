@@ -35,7 +35,7 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider sliderPenaltySteppingOut; 
     [SerializeField] TMP_Text sliderPenaltySteppingOutText;
-    public static int penaltySteppingOut = 10;
+    public static int penaltySteppingOut = 0;
 
     public Slider sliderRadiusIncreaseSpeed; 
     [SerializeField] TMP_Text sliderRadiusIncreaseSpeedText;
