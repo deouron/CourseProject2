@@ -18,6 +18,8 @@ public class DrawLine : MonoBehaviour
     public GameObject leftPoint;
     public GameObject rightPoint;
 
+    public GameObject playMetronomeButton;
+
     public float time;
     public float secDuration;
     [SerializeField] TMP_Text timeText;
@@ -173,9 +175,11 @@ public class DrawLine : MonoBehaviour
         if (PauseMenu.isPause) {
             leftPoint.SetActive(false);
             rightPoint.SetActive(false);
+            playMetronomeButton.SetActive(false);
         } else {
             leftPoint.SetActive(true);
             rightPoint.SetActive(true);
+            playMetronomeButton.SetActive(true);
         }
 
         if (Input.GetMouseButton(0) && !PauseMenu.isPause) {

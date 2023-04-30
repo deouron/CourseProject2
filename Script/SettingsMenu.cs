@@ -45,6 +45,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] TMP_Text sliderRadiusDecreaseSpeedText;
     public static float radiusDecreaseSpeed = 1.3f;
 
+     public Slider sliderMetronomeBeats; 
+    [SerializeField] TMP_Text sliderMetronomeBeatsText;
+
     public void Start() {
         clearMenuUI.SetActive(false);
 
@@ -57,6 +60,7 @@ public class SettingsMenu : MonoBehaviour
         sliderPenaltySteppingOut.value = penaltySteppingOut;
         sliderRadiusIncreaseSpeed.value = radiusIncreaseSpeed;
         sliderRadiusDecreaseSpeed.value = radiusDecreaseSpeed;
+        sliderMetronomeBeats.value = MetronomeData.DEFAULT_TEMPO;
     }
 
     public void Update() {
@@ -86,6 +90,9 @@ public class SettingsMenu : MonoBehaviour
 
         radiusDecreaseSpeed = (float)System.Math.Round(sliderRadiusDecreaseSpeed.value, 1);
         sliderRadiusDecreaseSpeedText.text = radiusDecreaseSpeed.ToString();
+
+        MetronomeData.DEFAULT_TEMPO = (ushort)sliderMetronomeBeats.value;
+        sliderMetronomeBeatsText.text = MetronomeData.DEFAULT_TEMPO.ToString();
     }
 
     public void OpenConfirm() {
