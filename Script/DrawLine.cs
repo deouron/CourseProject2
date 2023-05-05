@@ -37,6 +37,9 @@ public class DrawLine : MonoBehaviour
     private float distanceBetweenCurves;
     private float distanceToEllipse;
 
+    public static int metronomeClicks;
+    public static int metronomeCounts;
+
     void LoadData() {
         if (PlayerPrefs.HasKey("saveDataCnt")) {
             PauseMenu.saveDataCnt = PlayerPrefs.GetInt("saveDataCnt");
@@ -76,6 +79,9 @@ public class DrawLine : MonoBehaviour
         }
 
         resetPoints();
+
+        metronomeClicks = 0;
+        metronomeCounts = 0;
     }
 
     void increaseRaduises() {
@@ -171,6 +177,12 @@ public class DrawLine : MonoBehaviour
     }
 
     void Update() {
+        if (metronomeClicks > metronomeCounts) {
+            ++metronomeCounts;
+            // WriteLog.ClearArrays();
+            return;
+        }
+
         distanceBetweenCurves = (float)Vector3.Distance(DrawTopCurve.p0 + DrawTopCurve.shift,
                                                         DrawDownCurve.p0 + DrawDownCurve.shift);
 
@@ -184,7 +196,7 @@ public class DrawLine : MonoBehaviour
             playMetronomeButton.SetActive(true);
         }
 
-        if (Input.GetMouseButton(0) && !PauseMenu.isPause && !PlayMetronome.isMetronomeClick) {
+        if (Input.GetMouseButton(0) && !PauseMenu.isPause) {
             Vector2 currentPoint = Utils.GetWorldCoordinate(Input.mousePosition);
             if (!(currentPoint.x == 0 && currentPoint.y == 0)) {
                 // Debug.Log(currentPoint);

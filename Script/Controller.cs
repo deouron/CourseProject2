@@ -54,6 +54,11 @@ public class Controller : MonoBehaviour
 
     public void OnPlayClick()
     {
+        Debug.Log("metronomeClicks: " + DrawLine.metronomeClicks.ToString() + 
+                  ", metronomeCounts: " + DrawLine.metronomeCounts.ToString());
+        DrawLine.metronomeClicks += 1;
+        Debug.Log("NEXT: metronomeClicks: " + DrawLine.metronomeClicks.ToString() + 
+                  ", metronomeCounts: " + DrawLine.metronomeCounts.ToString());
         metronome.enabled = !metronome.enabled;
         view.UpdatePlayButtonDisplay(metronome.enabled);
     }
@@ -104,4 +109,10 @@ public class Controller : MonoBehaviour
     {
         tapTimes.Clear();
     }
+
+    // public void MetronomeClick() {
+    //     Debug.Log("Metronome Click");
+    //     DrawLine.isMetronomeClick = !DrawLine.isMetronomeClick;
+    //     DrawLine.isMetronomeClick = !DrawLine.isMetronomeClick;
+    // }
 }

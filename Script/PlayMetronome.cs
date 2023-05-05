@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayMetronome : MonoBehaviour
 {
-    public static bool isMetronomeClick = false;
 
-    public void MetronomeClick() {
-        Debug.Log("Metronome Click");
-        isMetronomeClick = !isMetronomeClick;
-        isMetronomeClick = !isMetronomeClick;
-    }
+    // public void MetronomeClick() {
+    //     Debug.Log("Metronome Click");
+    //     DrawLine.isMetronomeClick = !DrawLine.isMetronomeClick;
+    //     DrawLine.isMetronomeClick = !DrawLine.isMetronomeClick;
+    // }
 }
