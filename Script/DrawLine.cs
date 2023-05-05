@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class DrawLine : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class DrawLine : MonoBehaviour
 
     public static int metronomeClicks;
     public static int metronomeCounts;
+
+    public static string path;
+    private bool isLogStart;
 
     void LoadData() {
         if (PlayerPrefs.HasKey("saveDataCnt")) {
@@ -82,6 +86,14 @@ public class DrawLine : MonoBehaviour
 
         metronomeClicks = 0;
         metronomeCounts = 0;
+
+        path = "data_" + DateTime.Now.Year.ToString() + "_" +
+                                                DateTime.Now.Month.ToString() + "_" +
+                                                DateTime.Now.Day.ToString() + "_" +
+                                                DateTime.Now.Hour.ToString() + "_" +
+                                                DateTime.Now.Minute.ToString() + "_" +
+                                                DateTime.Now.Second.ToString() + ".txt";
+        isLogStart = false;
     }
 
     void increaseRaduises() {
@@ -140,6 +152,11 @@ public class DrawLine : MonoBehaviour
                 isNeedShift = true;
             }
         }
+        using (StreamWriter writetext = File.AppendText(path))
+            {
+                writetext.WriteLine(secDuration.ToString() + " // duration (milisec)");
+                writetext.Close();
+            }
     }
 
     void ChangeTimeMistake() {
@@ -172,6 +189,10 @@ public class DrawLine : MonoBehaviour
         milisecDurationMistake = 0;
         DrawTopCurve.shift.y = (SettingsMenu.InitialDistance - 4) / 2;
         DrawDownCurve.shift.y = -(SettingsMenu.InitialDistance - 4) / 2;
+
+        Utils.writeDateToFile(path);
+        Utils.writeEndDateToFile(path);
+        isLogStart = false;
 
         resetPoints();
     }
@@ -207,8 +228,22 @@ public class DrawLine : MonoBehaviour
                 score += distanceToEllipse / 100;
                 scoreText.text = System.Math.Round(score, 2).ToString();
 
-                 Debug.Log("distanceToEllipse: " + distanceToEllipse.ToString() + 
+                Debug.Log("distanceToEllipse: " + distanceToEllipse.ToString() + 
                     "\ndistanceBetweenCurves: " + (distanceBetweenCurves / 2).ToString());
+
+                if (!isLogStart) {
+                    isLogStart = true;
+                    Utils.writeDateToFile(path);
+                    Utils.writeStartDateToFile(path);
+                }
+
+                using (StreamWriter writetext = File.AppendText(path))
+                    {
+                        writetext.Write(currentPoint.x.ToString() + " // x" + Environment.NewLine);
+                        writetext.Write(currentPoint.y.ToString() + " // y" + Environment.NewLine);
+                        writetext.WriteLine(distanceToEllipse.ToString() + " // distance to ellipse");
+                        writetext.Close();
+                    }
 
                 if (distanceToEllipse > (distanceBetweenCurves / 2)) {
                     ChangeTimeMistake();

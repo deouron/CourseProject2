@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
+using UnityEngine.UI;
+using TMPro;
 
 public class Utils : MonoBehaviour
 {
@@ -78,5 +82,37 @@ public class Utils : MonoBehaviour
     public static Vector2 GetWorldCoordinate(Vector2 mousePosition) {
         Vector2 mousePoint = new Vector2(mousePosition.x, mousePosition.y);
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    public static void writeDateToFile(string path) {
+        using (StreamWriter writetext = File.AppendText(path))
+            {
+                string current_time = DateTime.Now.Year.ToString() + "_" +
+                    DateTime.Now.Month.ToString() + "_" +
+                    DateTime.Now.Day.ToString() + "_" +
+                    DateTime.Now.Hour.ToString() + "_" +
+                    DateTime.Now.Minute.ToString() + "_" +
+                    DateTime.Now.Second.ToString();
+
+                writetext.Write(current_time);
+                writetext.Close();
+            }
+    }
+
+    public static void writeStartDateToFile(string path) {
+        using (StreamWriter writetext = File.AppendText(path))
+            {
+                writetext.Write(" // start time" + Environment.NewLine);
+                writetext.Close();
+            }
+    }
+
+    public static void writeEndDateToFile(string path) {
+        using (StreamWriter writetext = File.AppendText(path))
+            {
+                writetext.Write(" // end time" + Environment.NewLine);
+                writetext.WriteLine("");
+                writetext.Close();
+            }
     }
 }
