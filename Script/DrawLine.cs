@@ -87,7 +87,9 @@ public class DrawLine : MonoBehaviour
                                                             SettingsMenu.radiusIncreaseSpeed,
                                                             SettingsMenu.radiusIncreaseSpeed);
         }
-        // Debug.Log("leftPoint: " + leftPoint.transform.localScale);
+        Debug.Log("leftPoint: " + leftPoint.transform.localScale);
+        Debug.Log("leftPoint: " + leftPoint.transform.position.x);
+        Debug.Log("leftPoint: " + leftPoint.transform.position.y);
     }
 
     void decreaseRaduises() {
@@ -182,7 +184,7 @@ public class DrawLine : MonoBehaviour
             playMetronomeButton.SetActive(true);
         }
 
-        if (Input.GetMouseButton(0) && !PauseMenu.isPause) {
+        if (Input.GetMouseButton(0) && !PauseMenu.isPause && !PlayMetronome.isMetronomeClick) {
             Vector2 currentPoint = Utils.GetWorldCoordinate(Input.mousePosition);
             if (!(currentPoint.x == 0 && currentPoint.y == 0)) {
                 // Debug.Log(currentPoint);

@@ -33,30 +33,20 @@ public class Controller : MonoBehaviour
     {
         if (metronome.enabled)
         {
-            metronome.enabled = false;
             view.UpdatePlayButtonDisplay(metronome.enabled);
+            metronome.enabled = false;
         }
 
-        switch (property)
-        {
-            case MetronomeProperties.Tempo:
-                metronome.Data.Tempo = (ushort)value;
-                break;
-
-            case MetronomeProperties.Numerator:
-                metronome.Data.Numerator = (ushort)value;
-                break;
-
-            case MetronomeProperties.Denominator:
-                metronome.Data.Denominator = (ushort)value;
-                break;
-
-            case MetronomeProperties.Subdivisions:
-                metronome.Data.Subdivisions = (List<ushort>)value;
-                break;
-
-            default:
-                return;
+        if (property == MetronomeProperties.Tempo) {
+            metronome.Data.Tempo = (ushort)value;
+        } else if (property == MetronomeProperties.Numerator) {
+            metronome.Data.Numerator = (ushort)value;
+        } else if (property == MetronomeProperties.Denominator) {
+            metronome.Data.Denominator = (ushort)value;
+        } else if (property == MetronomeProperties.Subdivisions) {
+            metronome.Data.Subdivisions = (List<ushort>)value;       
+        } else {
+            return;
         }
 
         metronome.CreateMetronome();

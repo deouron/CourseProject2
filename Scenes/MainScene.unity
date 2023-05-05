@@ -3724,6 +3724,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 714366393}
+        m_TargetAssemblyTypeName: PlayMetronome, Assembly-CSharp
+        m_MethodName: MetronomeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &663644221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4548,6 +4560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 714366392}
   - component: {fileID: 714366391}
+  - component: {fileID: 714366393}
   - component: {fileID: 714366390}
   m_Layer: 0
   m_Name: Controller
@@ -4600,6 +4613,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &714366393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714366389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57afab67667054388aafad314b4b5a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &719523049
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,6 +5634,7 @@ GameObject:
   - component: {fileID: 1027998312}
   - component: {fileID: 1027998311}
   - component: {fileID: 1027998310}
+  - component: {fileID: 1027998313}
   - component: {fileID: 1027998308}
   m_Layer: 0
   m_Name: View
@@ -5721,6 +5747,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1027998313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027998307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57afab67667054388aafad314b4b5a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1049164469
 GameObject:
   m_ObjectHideFlags: 0
@@ -7602,7 +7640,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3537736, g: 1, b: 0.48392317, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8801,6 +8839,7 @@ GameObject:
   - component: {fileID: 1829835622}
   - component: {fileID: 1829835621}
   - component: {fileID: 1829835620}
+  - component: {fileID: 1829835625}
   - component: {fileID: 1829835624}
   m_Layer: 5
   m_Name: Canvas
@@ -8909,6 +8948,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 313221125}
+--- !u!114 &1829835625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829835619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57afab67667054388aafad314b4b5a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1836119761
 GameObject:
   m_ObjectHideFlags: 0
@@ -9120,7 +9171,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.35686275, g: 1, b: 0.4862745, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
