@@ -201,6 +201,7 @@ public class DrawLine : MonoBehaviour
         if (metronomeClicks > metronomeCounts) {
             ++metronomeCounts;
             // WriteLog.ClearArrays();
+            Reset();
             return;
         }
 
