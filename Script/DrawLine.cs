@@ -154,7 +154,7 @@ public class DrawLine : MonoBehaviour
         }
         using (StreamWriter writetext = File.AppendText(path))
             {
-                writetext.WriteLine(secDuration.ToString() + " // duration (milisec)");
+                writetext.WriteLine(secDuration.ToString() + " # duration (milisec)");
                 writetext.Close();
             }
     }
@@ -240,9 +240,9 @@ public class DrawLine : MonoBehaviour
 
                 using (StreamWriter writetext = File.AppendText(path))
                     {
-                        writetext.Write(currentPoint.x.ToString() + " // x" + Environment.NewLine);
-                        writetext.Write(currentPoint.y.ToString() + " // y" + Environment.NewLine);
-                        writetext.WriteLine(distanceToEllipse.ToString() + " // distance to ellipse");
+                        writetext.Write(currentPoint.x.ToString() + " # x" + Environment.NewLine);
+                        writetext.Write(currentPoint.y.ToString() + " # y" + Environment.NewLine);
+                        writetext.WriteLine(distanceToEllipse.ToString() + " # distance to ellipse");
                         writetext.Close();
                     }
 

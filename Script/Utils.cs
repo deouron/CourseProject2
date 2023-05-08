@@ -102,7 +102,7 @@ public class Utils : MonoBehaviour
     public static void writeStartDateToFile(string path) {
         using (StreamWriter writetext = File.AppendText(path))
             {
-                writetext.Write(" // start time" + Environment.NewLine);
+                writetext.Write(" # start time" + Environment.NewLine);
                 writetext.Close();
             }
     }
@@ -110,7 +110,7 @@ public class Utils : MonoBehaviour
     public static void writeEndDateToFile(string path) {
         using (StreamWriter writetext = File.AppendText(path))
             {
-                writetext.Write(" // end time" + Environment.NewLine);
+                writetext.Write(" # end time" + Environment.NewLine);
                 writetext.WriteLine("");
                 writetext.Close();
             }
