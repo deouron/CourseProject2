@@ -39,4 +39,4 @@
 
 ---
 
-С дополнительными скриншотами можно ознакомиться по [ссылке](https://github.com/deouron/CourseProject2/tree/master/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B). Дополнительные материалы (в том числе прошлые версии для mac/windows) доступны по [ссылке](https://disk.yandex.ru/d/AZ0XWIwRGP0omQ).
+С дополнительными скриншотами можно ознакомиться по [ссылке](https://github.com/deouron/CourseProject2/tree/master/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B). Дополнительные материалы (в том числе прошлые версии для mac/windows) доступны по [ссылке](https://disk.yandex.ru/d/AZ0XWIwRGP0omQ). Для использования кода необходимо в приложении Unity заметить папку Assets на скачанный репозиторий.
